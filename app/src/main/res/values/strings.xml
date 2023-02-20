@@ -10,4 +10,6 @@
     <string name="description">Description</string>
     <string name="text">Text</string>
     <string name="profile">Profile</string>
+    <string name="skip">Skip</string>
+    <string name="get_started">Get started</string>
 </resources>
