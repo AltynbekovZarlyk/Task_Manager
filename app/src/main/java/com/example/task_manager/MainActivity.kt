@@ -9,24 +9,28 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.task_manager.data.local.Pref
 import com.example.task_manager.databinding.ActivityMainBinding
 import com.example.task_manager.ui.home.HomeFragmentDirections
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var pref: Pref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        pref = Pref(this)
 
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
-        navController.navigate(HomeFragmentDirections.actionNavigationHomeToOnBoardingFragment())
+        if (!pref.isUserSeen())
+            navController.navigate(HomeFragmentDirections.actionNavigationHomeToOnBoardingFragment())
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -45,9 +49,9 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             navView.isVisible = bottomNavFragments.contains(destination.id)
-            if(destination.id == R.id.onBoardingFragment){
-              supportActionBar?.hide()
-            }else supportActionBar?.show()
+            if (destination.id == R.id.onBoardingFragment) {
+                supportActionBar?.hide()
+            } else supportActionBar?.show()
         }
         navView.setupWithNavController(navController)
     }
