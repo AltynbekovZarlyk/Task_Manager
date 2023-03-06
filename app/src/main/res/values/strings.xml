@@ -12,4 +12,5 @@
     <string name="profile">Profile</string>
     <string name="skip">Skip</string>
     <string name="get_started">Get started</string>
+    <string name="enter_your_name">Enter your name</string>
 </resources>

@@ -38,6 +38,7 @@ class TaskAdapter(private val longClickListener: (Task) -> Unit) :
     }
 
     inner class TaskViewHolder(private val binding: ItemTaskBinding) : ViewHolder(binding.root) {
+
         fun bibd(task: Task) {
             itemView.setOnLongClickListener {
                 longClickListener(task)

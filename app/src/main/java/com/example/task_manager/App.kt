@@ -14,7 +14,6 @@ class App : Application() {
         ).allowMainThreadQueries().build()
     }
 
-
     companion object {
         lateinit var db: AppDatabase
     }
